@@ -1,11 +1,14 @@
 package com.tws.refactoring.extract_method;
 
+import com.sun.org.apache.xpath.internal.operations.Or;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -27,5 +30,51 @@ public class OwingPrinterTest {
     public void printOwing() {
 //        System.out.print("hello");
 //        assertEquals("hello", outContent.toString());
+    }
+
+    @Test
+    public void should_return_owing_when_input_two_order_and_name_is_apple(){
+        //given
+        OwingPrinter owingPrinter = new OwingPrinter();
+        Order firstOrder = new Order(10);
+        Order secondOrder = new Order(15);
+        List<Order> orderList = new ArrayList<>();
+
+        orderList.add(firstOrder);
+        orderList.add(secondOrder);
+
+        //when
+        owingPrinter.printOwing("apple", orderList);
+        String expectedResult = "*****************************\r\n" +
+                "****** Customer totals ******\r\n" +
+                "*****************************\r\n" +
+                "name: apple\r\n" +
+                "amount: 25.0\r\n";
+
+        //then
+        assertEquals(expectedResult, outContent.toString());
+    }
+
+    @Test
+    public void should_return_owing_when_input_two_order_amount_is_zero_and_name_is_apple(){
+        //given
+        OwingPrinter owingPrinter = new OwingPrinter();
+        Order firstOrder = new Order(0);
+        Order secondOrder = new Order(0);
+        List<Order> orderList = new ArrayList<>();
+
+        orderList.add(firstOrder);
+        orderList.add(secondOrder);
+
+        //when
+        owingPrinter.printOwing("apple", orderList);
+        String expectedResult = "*****************************\r\n" +
+                "****** Customer totals ******\r\n" +
+                "*****************************\r\n" +
+                "name: apple\r\n" +
+                "amount: 0.0\r\n";
+
+        //then
+        assertEquals(expectedResult, outContent.toString());
     }
 }
