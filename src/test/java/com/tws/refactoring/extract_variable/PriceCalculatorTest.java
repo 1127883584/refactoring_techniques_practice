@@ -47,4 +47,32 @@ public class PriceCalculatorTest {
 
     }
 
+    @Test
+    public void should_return_1290_when_quantity_is_600_and_itemPrice_is_2(){
+        //given
+        PriceCalculator priceCalculator = new PriceCalculator();
+
+        //when
+        double actualResult = priceCalculator.getPrice(600, 2);
+        double exceptedResult = 1290;
+
+        //then
+        assertEquals(exceptedResult, actualResult, 0.0);
+
+    }
+
+    @Test
+    public void should_return_1885_when_quantity_is_600_and_itemPrice_is_3(){
+        //given
+        PriceCalculator priceCalculator = new PriceCalculator();
+
+        //when
+        double actualResult = priceCalculator.getPrice(600, 3);
+        double exceptedResult = 1885;
+
+        //then
+        assertEquals(exceptedResult, actualResult, 0.0);
+
+    }
+
 }
