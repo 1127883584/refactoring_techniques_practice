@@ -45,11 +45,11 @@ public class OwingPrinterTest {
 
         //when
         owingPrinter.printOwing("apple", orderList);
-        String expectedResult = "*****************************\r\n" +
-                "****** Customer totals ******\r\n" +
-                "*****************************\r\n" +
-                "name: apple\r\n" +
-                "amount: 25.0\r\n";
+        String expectedResult = "*****************************\n" +
+                "****** Customer totals ******\n" +
+                "*****************************\n" +
+                "name: apple\n" +
+                "amount: 25.0\n";
 
         //then
         assertEquals(expectedResult, outContent.toString());
@@ -68,11 +68,11 @@ public class OwingPrinterTest {
 
         //when
         owingPrinter.printOwing("apple", orderList);
-        String expectedResult = "*****************************\r\n" +
-                "****** Customer totals ******\r\n" +
-                "*****************************\r\n" +
-                "name: apple\r\n" +
-                "amount: 0.0\r\n";
+        String expectedResult = "*****************************\n" +
+                "****** Customer totals ******\n" +
+                "*****************************\n" +
+                "name: apple\n" +
+                "amount: 0.0\n";
 
         //then
         assertEquals(expectedResult, outContent.toString());

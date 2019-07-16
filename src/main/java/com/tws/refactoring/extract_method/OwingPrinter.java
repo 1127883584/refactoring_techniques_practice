@@ -1,42 +1,27 @@
 package com.tws.refactoring.extract_method;
 
-import java.util.Enumeration;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Vector;
 
 public class OwingPrinter {
     void printOwing(String name, List<Order> orders) {
-        Iterator<Order> elements = orders.iterator();
-        double outstanding = 0.0;
-
-        // print banner
-        printBanner();
-
-        // print owings
-        outstanding = getOutstanding(elements, outstanding);
-
-        // print details
-        printDetails("name: " + name, "amount: " + outstanding);
+        double outstanding = getOutstanding(orders);
+        print(name, outstanding);
     }
 
-    private void printDetails(String s, String s2) {
-        System.out.println(s);
-        System.out.println(s2);
+    private void print(String name, double outstanding){
+        System.out.print(String.format(
+                "*****************************\n" +
+                "****** Customer totals ******\n" +
+                "*****************************\n" +
+                "name: %s\n" +
+                "amount: %.1f\n", name, outstanding
+        ));
     }
 
-    private double getOutstanding(Iterator<Order> elements, double outstanding) {
-        while (elements.hasNext()) {
-            Order each = (Order) elements.next();
-            outstanding += each.getAmount();
-        }
-        return outstanding;
+    private double getOutstanding(List<Order> orders) {
+        return orders.stream().mapToDouble(Order::getAmount).sum();
     }
 
-    private void printBanner() {
-        printDetails("*****************************", "****** Customer totals ******");
-        System.out.println ("*****************************");
-    }
 }
 
 class Order {
